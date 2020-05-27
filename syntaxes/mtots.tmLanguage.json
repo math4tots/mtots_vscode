@@ -6,26 +6,166 @@
 			"include": "#keywords"
 		},
 		{
-			"include": "#strings"
+			"include": "#number"
+		},
+		{
+			"include": "#string_literal"
+		},
+		{
+			"include": "#classify_names"
 		}
 	],
 	"repository": {
 		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.mtots",
-				"match": "\\b(if|while|for|return)\\b"
-			}]
+			"patterns": [
+				{
+					"name": "constant.language.mtots",
+					"match": "\\b(true|false|nil)\\b"
+				},
+				{
+					"name": "keyword.control.mtots",
+					"match": "\\b(break|continue|elif|else|for|if|return|try|while|yield)\\b"
+				},
+				{
+					"name": "keyword.other.mtots",
+					"match": "\\b(and|as|def|del|except|from|import|in|is|nonlocal|not|or|static)\\b"
+				},
+				{
+					"comment": "Reserved keyword",
+					"name": "invalid.deprecated.mtots",
+					"match": "\\b(abstract|do|enum|struct|union|final|override)\\b"
+				}
+			]
 		},
-		"strings": {
+		"number": {
+			"comment": "int or float literals",
+			"patterns": [
+				{
+					"comment": "Integer literal (hexadecimal)",
+					"name": "constant.numeric.integer.hexadecimal.mtots",
+					"match": "\\b0x[a-fA-F0-9_]+\\b"
+				},
+				{
+					"comment": "Integer literal (decimal)",
+					"name": "constant.numeric.integer.decimal.mtots",
+					"match": "\\b[0-9][0-9_]*\\b"
+				},
+				{
+					"comment": "Floating point literal (fraction)",
+					"name": "constant.numeric.float.mtots",
+					"match": "\\b[0-9][0-9_]*\\.[0-9][0-9_]*([eE][+-]?[0-9_]+)?\\b"
+				}
+			]
+		},
+		"classify_names": {
+			"patterns": [
+				{
+					"comment": "Type definition (best effort)",
+					"match": "\\b(class|trait)\\s+([a-zA-Z_][a-zA-Z0-9_]*)\\b",
+					"captures": {
+						"1": {
+							"name": "storage.type.mtots"
+						},
+						"2": {
+							"name": "entity.name.type.mtots"
+						}
+					}
+				},
+				{
+					"comment": "Function or method call (best effort)",
+					"match": "\\b([A-Za-z][A-Za-z0-9_]*|_[A-Za-z0-9_]+)\\s*\\(",
+					"captures": {
+						"1": {
+							"name": "entity.name.function.mtots"
+						}
+					}
+				}
+			]
+		},
+		"string_literal": {
+			"comment": "String literal",
+			"patterns": [
+				{"include": "#triple_double_quote_string_literal"},
+				{"include": "#triple_single_quote_string_literal"},
+				{"include": "#raw_triple_double_quote_string_literal"},
+				{"include": "#raw_triple_single_quote_string_literal"},
+				{"include": "#raw_double_quote_string_literal"},
+				{"include": "#raw_single_quote_string_literal"},
+				{"include": "#double_quote_string_literal"},
+				{"include": "#single_quote_string_literal"}
+			]
+		},
+		"escaped_character": {
+			"name": "constant.character.escape.mtots",
+			"match": "\\\\(x[0-9A-Fa-f]{2}|[0-2][0-7]{0,2}|3[0-6][0-7]?|37[0-7]?|[4-7][0-7]?|.)"
+		},
+		"single_quote_string_literal": {
+			"comment": "Single-quote string literal",
+			"name": "string.quoted.single.mtots",
+			"begin": "b?'",
+			"end": "'",
+			"patterns": [
+				{
+					"include": "#escaped_character"
+				}
+			]
+		},
+		"double_quote_string_literal": {
+			"comment": "Double-quote string literal",
 			"name": "string.quoted.double.mtots",
-			"begin": "\"",
+			"begin": "b?\"",
 			"end": "\"",
 			"patterns": [
 				{
-					"name": "constant.character.escape.mtots",
-					"match": "\\\\."
+					"include": "#escaped_character"
 				}
 			]
+		},
+		"triple_double_quote_string_literal": {
+			"comment": "Triple double-quote string literal (raw is not quite accurately handled)",
+			"name": "string.quoted.double.mtots",
+			"begin": "\"\"\"",
+			"end": "\"\"\"",
+			"patterns": [
+				{
+					"include": "#escaped_character"
+				}
+			]
+		},
+		"triple_single_quote_string_literal": {
+			"comment": "Triple single-quote string literal (raw is not quite accurately handled)",
+			"name": "string.quoted.single.mtots",
+			"begin": "'''",
+			"end": "'''",
+			"patterns": [
+				{
+					"include": "#escaped_character"
+				}
+			]
+		},
+		"raw_triple_double_quote_string_literal": {
+			"comment": "Triple double-quote string literal (raw is not quite accurately handled)",
+			"name": "string.quoted.double.mtots",
+			"begin": "r\"\"\"",
+			"end": "\"\"\""
+		},
+		"raw_triple_single_quote_string_literal": {
+			"comment": "Triple single-quote string literal (raw is not quite accurately handled)",
+			"name": "string.quoted.single.mtots",
+			"begin": "r'''",
+			"end": "'''"
+		},
+		"raw_double_quote_string_literal": {
+			"comment": "Raw double-quote string literal",
+			"name": "string.quoted.double.raw.mtots",
+			"begin": "r(#*)\"",
+			"end": "\"\\1"
+		},
+		"raw_single_quote_string_literal": {
+			"comment": "Raw single-quote string literal",
+			"name": "string.quoted.single.raw.mtots",
+			"begin": "r(#*)'",
+			"end": "'\\1"
 		}
 	},
 	"scopeName": "source.mtots"
