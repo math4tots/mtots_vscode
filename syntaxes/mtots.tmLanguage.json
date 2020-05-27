@@ -28,7 +28,7 @@
 				},
 				{
 					"name": "keyword.other.mtots",
-					"match": "\\b(and|as|def|del|except|from|import|in|is|nonlocal|not|or|static)\\b"
+					"match": "\\b(and|as|def|del|from|import|in|is|nonlocal|not|or|static)\\b"
 				},
 				{
 					"comment": "Reserved keyword",
