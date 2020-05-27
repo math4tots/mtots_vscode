@@ -1,0 +1,25 @@
+{
+    "name": "mtots",
+    "displayName": "mtots",
+    "description": "Syntax highlighting for mtots scripts",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.45.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "mtots",
+            "aliases": ["mtots", "mtots"],
+            "extensions": [".u"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "mtots",
+            "scopeName": "source.mtots",
+            "path": "./syntaxes/mtots.tmLanguage.json"
+        }]
+    }
+}
