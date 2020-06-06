@@ -13,6 +13,10 @@ as reference
 
 ## Release Notes
 
+### 0.0.4
+
+Line string literals
+
 ### 0.0.1
 
 An extension is born~

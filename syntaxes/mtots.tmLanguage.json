@@ -92,12 +92,18 @@
 				{"include": "#raw_double_quote_string_literal"},
 				{"include": "#raw_single_quote_string_literal"},
 				{"include": "#double_quote_string_literal"},
-				{"include": "#single_quote_string_literal"}
+				{"include": "#single_quote_string_literal"},
+				{"include": "#line_string_literal"}
 			]
 		},
 		"escaped_character": {
 			"name": "constant.character.escape.mtots",
 			"match": "\\\\(x[0-9A-Fa-f]{2}|[0-2][0-7]{0,2}|3[0-6][0-7]?|37[0-7]?|[4-7][0-7]?|.)"
+		},
+		"line_string_literal": {
+			"comment": "Line comment style string literals",
+			"name": "string.mtots",
+			"match": "#.*$"
 		},
 		"single_quote_string_literal": {
 			"comment": "Single-quote string literal",
