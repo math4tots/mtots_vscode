@@ -105,7 +105,7 @@
 		},
 		"escaped_character": {
 			"name": "constant.character.escape.mtots",
-			"match": "\\\\(x[0-9A-Fa-f]{2}|(u|o|d)\\{[0-9A-Fa-f]*\\}|[0-2][0-7]{0,2}|3[0-6][0-7]?|37[0-7]?|[4-7][0-7]?)"
+			"match": "\\\\(x[0-9A-Fa-f]{2}|n|r|t|\\\\|'|\"|0|(u|o|d)\\{[0-9A-Fa-f]*\\})"
 		},
 		"line_string_literal": {
 			"comment": "Line comment style string literals",
