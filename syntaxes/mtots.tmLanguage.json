@@ -27,7 +27,7 @@
 				},
 				{
 					"name": "keyword.control.mtots",
-					"match": "\\b(break|continue|elif|else|for|switch|if|return|try|while|yield)\\b"
+					"match": "\\b(break|continue|elif|else|for|switch|if|return|try|while|yield|async|await)\\b"
 				},
 				{
 					"name": "keyword.other.mtots",
