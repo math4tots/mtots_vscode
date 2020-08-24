@@ -72,6 +72,11 @@
 					"match": "\\b(__file|__name|__main)\\b"
 				},
 				{
+					"comment": "Special names",
+					"name": "variable.language",
+					"match": "\\b(self)\\b"
+				},
+				{
 					"comment": "Intrinsics",
 					"name": "keyword.other.mtots",
 					"match": "\\$(GetCallingModule)\\b"
